@@ -35,7 +35,7 @@ def user_detail(request, pk):
         return Response(serializer.data, status=HTTP_202_ACCEPTED)   
 
     elif request.method == 'PUT':
-        serializer = UserSerializer(user, data=request.data)
+        serializer = UserSerializer(user, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=HTTP_202_ACCEPTED)
@@ -106,7 +106,7 @@ def post_detail(request, pk):
         serializer = PostSerializer(post)
         return Response(serializer.data, status=HTTP_202_ACCEPTED)  
     elif request.method == 'PUT':
-        serializer = PostSerializer(post, data=request.data)
+        serializer = PostSerializer(post, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=HTTP_202_ACCEPTED)
